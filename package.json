@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "WiFi remote for Sony Bravia TV using the REST API",
   "main": "src/service/sony-api.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build-js": "webpack",
     "build-css": "node-sass src/css -o dist/",
