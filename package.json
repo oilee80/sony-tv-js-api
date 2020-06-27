@@ -1,0 +1,27 @@
+{
+  "name": "sony-tv-api",
+  "version": "1.0.0",
+  "description": "WiFi remote for Sony Bravia TV using the REST API",
+  "main": "src/service/sony-api.js",
+  "scripts": {
+    "build-js": "webpack",
+    "build-css": "node-sass src/css -o dist/",
+    "build": "npm run build-js && npm run build-css",
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "baseplate-core": "^1.8.6",
+    "http-server": "^0.12.1",
+    "node-sass": "^4.13.1",
+    "vue": "^2.6.11",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

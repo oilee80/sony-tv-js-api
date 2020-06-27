@@ -1,0 +1,174 @@
+<html>
+<head>
+<link href="dist/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="remote">
+        <div class="tv-selector">
+            <select v-model="selectedAddress" v-show="tvs.length">
+                <option v-for="tv in tvs" v-bind:value="tv.address">{{ tv.label }}</option>
+            </select>
+            <button v-on:click="show_add_tv = true">Add TV</button>
+            <form v-on:submit="processAddTVForm($event)" v-show="show_add_tv">
+                <label for="add-tv-label">
+                    TV Label
+                    <input id="add-tv-label" v-model="newTVDetails.label" />
+                </label>
+                <label for="add-tv-address">
+                    TV Address
+                    <input id="add-tv-address" v-model="newTVDetails.address" />
+                </label>
+                <label for="add-tv-psk">
+                    PSK
+                    <input id="add-tv-psk" v-model="newTVDetails.psk" />
+                </label>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+        <div class="buttons">
+            <ul class="group-1">
+                <!--li class="btn source" v-on:click="pressRemoteButton('')">Input Select <span>Text Hold</span></li-->
+                <li class="btn source">Input Select <span>Text Hold</span>
+                    <ul class="sources">
+                        <li class="" v-on:click="pressRemoteButton('Hdmi1')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi2')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi3')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi4')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Component1')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Component2')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Video1')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Video2')"></li>
+                        <li class="" v-on:click="pressRemoteButton('AnalogRgb1')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Analog2')"></li>
+                    </ul>
+                </li>
+                <li class="btn voice" v-on:click="pressRemoteButton('')">&#127897;<span>Voice</span></li>
+                <li class="btn power" v-on:click="pressRemoteButton('TvPower')">Power</li>
+            </ul>
+
+            <ul class="group-2">
+                <li class="btn digital-analog" v-on:click="pressRemoteButton('DigitalToggle')">Digital/Analog</li>
+                <li class="btn tv-radio" v-on:click="pressRemoteButton('Tv_Radio')">TV/Radio</li>
+                <li class="btn sync-menu" v-on:click="pressRemoteButton('SyncMenu')">Sync Menu</li>
+                <li class="btn exit" v-on:click="pressRemoteButton('Exit')">Exit</li>
+            </ul>
+
+            <ul class="group-3">
+                <li class="btn num-1" v-on:click="pressRemoteButton('Num1')">1 <span>/</span></li>
+                <li class="btn num-2" v-on:click="pressRemoteButton('Num2')">2 <span>abc</span></li>
+                <li class="btn num-3" v-on:click="pressRemoteButton('Num3')">3 <span>def</span></li>
+                <li class="btn num-4" v-on:click="pressRemoteButton('Num4')">4 <span>ghi</span></li>
+                <li class="btn num-5" v-on:click="pressRemoteButton('Num5')">5 <span>jkl</span></li>
+                <li class="btn num-6" v-on:click="pressRemoteButton('Num6')">6 <span>mno</span></li>
+                <li class="btn num-7" v-on:click="pressRemoteButton('Num7')">7 <span>pqrs</span></li>
+                <li class="btn num-8" v-on:click="pressRemoteButton('Num8')">8 <span>tuv</span></li>
+                <li class="btn num-9" v-on:click="pressRemoteButton('Num9')">9 <span>wxyz</span></li>
+                <li class="btn info" v-on:click="pressRemoteButton('iManual')">i+ <span>?</span></li>
+                <li class="btn num-" v-on:click="pressRemoteButton('Num0')">0 <span>⎵</span></li>
+                <li class="btn btn-text" v-on:click="pressRemoteButton('Teletext')">text??</li>
+            </ul>
+
+            <ul class="group-4">
+                <li class="btn g-play" v-on:click="pressRemoteButton('GooglePlay')">Google Play</li>
+                <li class="btn netflix" v-on:click="pressRemoteButton('Netflix')">Netflix</li>
+            </ul>
+
+            <ul class="group-5">
+                <li class="btn red" v-on:click="pressRemoteButton('Red')">Red</li>
+                <li class="btn green" v-on:click="pressRemoteButton('Green')">Green</li>
+                <li class="btn yellow" v-on:click="pressRemoteButton('Yellow')">Yellow</li>
+                <li class="btn blue" v-on:click="pressRemoteButton('Blue')">Blue</li>
+            </ul>
+
+<svg class="circle-buttons">
+    <path id="actionCurve" fill="transparent" d="
+        M60,30
+        q45,-30,90,0
+    " />
+    <path id="guideCurve" fill="transparent" d="
+        M155,40
+        q20,15,30,45
+    " />
+    <path id="homeCurve" fill="transparent" d="
+        M160,150
+        q20,-15,30,-45
+    " />
+    <path id="discoverCurve" fill="transparent" d="
+        M70,175
+        q30,15,60,0
+    " />
+    <path id="backCurve" fill="transparent" d="
+        M20,120
+        q20,45,30,45
+    " />
+    <path id="tvCurve" fill="transparent" d="
+        M20,85
+        q20,15,30,-25
+    " />
+    <text>
+        <textPath xlink:href="#actionCurve" v-on:click="pressRemoteButton('ActionMenu')">Action Menu</textPath>
+        <textPath xlink:href="#guideCurve" v-on:click="pressRemoteButton('GGuide')">Guide</textPath>
+        <textPath xlink:href="#homeCurve" v-on:click="pressRemoteButton('Home')">Home</textPath>
+        <textPath xlink:href="#discoverCurve" v-on:click="pressRemoteButton('')">Discover</textPath>
+        <textPath xlink:href="#backCurve" v-on:click="pressRemoteButton('')">Back</textPath>
+        <textPath xlink:href="#tvCurve" v-on:click="pressRemoteButton('Tv')">TV</textPath>
+    </text>
+</svg>
+
+<!--
+            <ul class="group-6">
+                <li class="btn action" v-on:click="pressRemoteButton('ActionMenu')">Action Menu</li>
+                <li class="btn guide" v-on:click="pressRemoteButton('GGuide')">Guide</li>
+                <li class="btn home" v-on:click="pressRemoteButton('Home')">Home</li>
+                <li class="btn discover" v-on:click="pressRemoteButton('')">Discover</li>
+                <li class="btn back" v-on:click="pressRemoteButton('')">Back</li>
+                <li class="btn tv" v-on:click="pressRemoteButton('Tv')">TV</li>
+            </ul>
+
+            <ul class="group-7">
+                <li class="btn up" v-on:click="pressRemoteButton('CursorUp')">Up</li>
+                <li class="btn right" v-on:click="pressRemoteButton('CursorRight')">Right</li>
+                <li class="btn down" v-on:click="pressRemoteButton('CursorDown')">Down</li>
+                <li class="btn left" v-on:click="pressRemoteButton('CursorLeft')">Left</li>
+                <li class="btn select" v-on:click="pressRemoteButton('DpadCenter')">Select</li>
+            </ul>
+-->
+            <div class="group-8">
+                <ul class="group-9">
+                    <li class="btn vol-up" v-on:click="pressRemoteButton('VolumeUp')">Vol +</li>
+                    <li class="btn vol-down" v-on:click="pressRemoteButton('VolumeDown')">Vol -</li>
+                </ul>
+
+                <ul class="group-10">
+                    <li class="btn switch" v-on:click="pressRemoteButton('')">Switch</li>
+                    <li class="btn mute" v-on:click="pressRemoteButton('Mute')">&#128263; <span>Mute</span></li>
+                </ul>
+
+                <ul class="group-11">
+                    <li class="btn prog-plus" v-on:click="pressRemoteButton('ChannelUp')">Prog +</li>
+                    <li class="btn prog-minus" v-on:click="pressRemoteButton('ChannelDown')">Prog -</li>
+                </ul>
+            </div>
+
+            <ul class="group-12">
+                <li class="btn audio" v-on:click="pressRemoteButton('Audio')">Audio</li>
+                <li class="btn rewind" v-on:click="pressRemoteButton('Rewind')">Rewind</li>
+                <li class="btn play" v-on:click="pressRemoteButton('Play')">Play</li>
+                <li class="btn f-forward" v-on:click="pressRemoteButton('Forward')">F. Forward</li>
+
+                <li class="btn subtitle-setting" v-on:click="pressRemoteButton('SubTitle')">... <span>Subtitle setting</span></li>
+                <li class="btn step-back" v-on:click="pressRemoteButton('Prev')">Previous</li>
+                <li class="btn pause" v-on:click="pressRemoteButton('Pause')">Pause</li>
+                <li class="btn step-forward" v-on:click="pressRemoteButton('Next')">Next</li>
+
+                <li class="btn help" v-on:click="pressRemoteButton('Help')">Help</li>
+                <li class="btn rec" v-on:click="pressRemoteButton('Rec')">Rec</li>
+                <li class="btn stop" v-on:click="pressRemoteButton('Stop')">Stop</li>
+                <li class="btn title-list" v-on:click="pressRemoteButton('')">Title List</li>
+            </ul>
+        </div>
+    </div>
+    klmsr08hib
+<script src="/dist/main.js" type="text/javascript"></script>
+</body>
+</html>

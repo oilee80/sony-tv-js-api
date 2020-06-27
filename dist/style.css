@@ -1,0 +1,52 @@
+#remote {
+  background: #222222;
+  color: #ffffff;
+  padding: 10px;
+  width: 220px; }
+  #remote li {
+    cursor: pointer;
+    text-align: center; }
+  #remote ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+  #remote .group-4 {
+    display: grid;
+    grid-template-columns: 50% 50%; }
+  #remote .group-1,
+  #remote .group-3,
+  #remote .group-8 {
+    display: grid;
+    grid-template-columns: 33% 33% 33%; }
+  #remote .group-2,
+  #remote .group-5,
+  #remote .group-12 {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%; }
+  #remote .group-9 li,
+  #remote .group-11 li {
+    background-color: #000000;
+    border: 1px solid #888888; }
+    #remote .group-9 li:first-child,
+    #remote .group-11 li:first-child {
+      border-radius: 100% 100% 0 0; }
+    #remote .group-9 li:last-child,
+    #remote .group-11 li:last-child {
+      border-radius: 0 0 100% 100%; }
+  #remote .circle-buttons {
+    height: 220px;
+    width: 220px; }
+    #remote .circle-buttons textPath {
+      background: #000000;
+      fill: #ffffff; }
+  #remote .group-1 li {
+    border-radius: 100%; }
+  #remote .source {
+    border: 1px solid #888888; }
+  #remote .voice {
+    background: #EEEEEE;
+    color: #000000; }
+  #remote .power {
+    background: #289438; }
+  #remote .source .sources {
+    display: none; }

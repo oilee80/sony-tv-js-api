@@ -1,0 +1,79 @@
+#remote {
+    background: #222222;
+    color: #ffffff;
+    padding: 10px;
+    width: 220px;
+    li {
+        cursor: pointer;
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .group-4 {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .group-1,
+    .group-3,
+    .group-8 {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .group-2,
+    .group-5,
+    .group-12 {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+
+    .group-9 li,
+    .group-11 li {
+        background-color: #000000;
+        border: 1px solid #888888;
+
+        &:first-child {
+            border-radius: 100% 100% 0 0;
+        }
+        &:last-child {
+            border-radius: 0 0 100% 100%;
+        }
+    }
+
+    .circle-buttons {
+        height: 220px;
+        width: 220px;
+
+        textPath {
+            background: #000000;
+            fill: #ffffff;
+        }
+    }
+
+    .group-1 li {
+        border-radius: 100%;
+    }
+
+    .source {
+        border: 1px solid #888888;
+    }
+
+    .voice {
+        background: #EEEEEE;
+        color: #000000;
+    }
+
+    .power {
+        background: rgb(40, 148, 56);
+    }
+
+    .source .sources {
+        display: none;
+    }
+}
