@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch"
   },
-  "author": "",
+  "author": "Lee Bradley",
   "license": "ISC",
   "devDependencies": {
     "baseplate-core": "^1.8.6",
@@ -26,5 +26,18 @@
   },
   "dependencies": {
     "axios": "^0.19.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/oilee80/sony-tv-js-api.git"
+  },
+  "keywords": [
+    "sony",
+    "tv",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/oilee80/sony-tv-js-api/issues"
+  },
+  "homepage": "https://github.com/oilee80/sony-tv-js-api#readme"
 }
