@@ -15,13 +15,15 @@ function init() {
             newTVDetails: {},
             show_add_tv: false,
         },
+        beforeMount: function() {
+            this.getTVsFromStorage();
+
+            this.show_add_tv = this.tvs.length === 0;
+        },
         methods: {
             pressRemoteButton: function(btn) {
                 console.log('clickSource', btn, this.selectedTV());
                 return this.selectedTV().remoteCommand(btn);
-            },
-            init: function() {
-                this.getTVsFromStorage();
             },
             selectedTV: function () {
                 const details = this.tvs.find(tv => {
@@ -54,44 +56,6 @@ function init() {
             }
         },
     });
-
-    console.log('vm', vm);
-    vm.init();
 }
 
 init();
-
-
-/*
-
-
-//                 // https://pro-bravia.sony.net/develop/integrate/rest-api/spec/service/appcontrol/v1_0/getApplicationList/index.html
-//                 vm.tv.appControl.getApplicationList([]).then(data => {
-//                     vm.rawHtml = '<ul><li>' + data.result[0].map(res => {
-//                         return `<h3>${res.title}</h3><img src="${res.icon}" />`
-//                     }).join('</li><li>') + '</li></ul>';
-//                 });
-
-//                 vm.tv.appControl.getApplicationStatusList([]).then(data => {
-// console.log('getApplicationStatusList', data);
-//                 });
-
-//                 // https://pro-bravia.sony.net/develop/integrate/rest-api/spec/service/audio/v1_1/getSoundSettings/index.html
-//                 vm.tv.audio.getSoundSettings([{'target': 'outputTerminal'}]).then(data => {
-// console.log('getSoundSettings', data);
-//                 });
-
-//                 // https://pro-bravia.sony.net/develop/integrate/rest-api/spec/service/audio/v1_0/getVolumeInformation/index.html
-//                 vm.tv.audio.getVolumeInformation([]).then(data => {
-// console.log('getVolumeInformation', data);
-//                 });
-
-//                 // https://pro-bravia.sony.net/develop/integrate/rest-api/spec/service/audio/v1_2/setAudioVolume/index.html
-//                 vm.tv.audio.setAudioVolume([{
-//                     volume: '8',
-//                     ui: 'on',
-//                     target: '',
-//                 }]).then(data => {
-// console.log('setAudioVolume', data);
-//                 });
-*/

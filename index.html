@@ -1,45 +1,71 @@
 <html>
 <head>
 <link href="dist/style.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width">
 </head>
 <body>
     <div id="remote">
+        <nav class="main-nav">
+            <dl>
+                <dt>Admin</dt>
+                <dd>Manage TV's accessible via this remote</dd>
+
+                <dt>Source</dt>
+                <dd>Select the source to use</dd>
+
+                <dt>#</dt>
+                <dd>Number pad</dd>
+
+                <dt>Apps</dt>
+                <dd>Quick access App buttons</dd>
+
+                <dt>Power</dt>
+                <dd>Turn the TV on or off</dd>
+            </dl>
+        </nav>
+
+
         <div class="tv-selector">
-            <select v-model="selectedAddress" v-show="tvs.length">
+            <select class="tv-selector__options" v-model="selectedAddress" v-show="tvs.length">
                 <option v-for="tv in tvs" v-bind:value="tv.address">{{ tv.label }}</option>
             </select>
-            <button v-on:click="show_add_tv = true">Add TV</button>
-            <form v-on:submit="processAddTVForm($event)" v-show="show_add_tv">
-                <label for="add-tv-label">
+            <button class="tv-selector__add" v-on:click="show_add_tv = true">New TV</button>
+            <form class="tv-selector__new-form" v-on:submit="processAddTVForm($event)" v-show="show_add_tv">
+                <label class="tv-selector__name" for="add-tv-label">
                     TV Label
                     <input id="add-tv-label" v-model="newTVDetails.label" />
                 </label>
-                <label for="add-tv-address">
+                <label class="tv-selector__ip" for="add-tv-address">
                     TV Address
                     <input id="add-tv-address" v-model="newTVDetails.address" />
                 </label>
-                <label for="add-tv-psk">
+                <label class="tv-selector__psk" for="add-tv-psk" title="Pre-Shared Key">
                     PSK
                     <input id="add-tv-psk" v-model="newTVDetails.psk" />
                 </label>
-                <input type="submit" value="Add">
+                <input class="tv-selector__add" type="submit" value="Add">
+                <input class="tv-selector__close" type="submit" value="Close">
             </form>
         </div>
-        <div class="buttons">
+
+
+        <div
+            class="buttons"
+            v-show="selectedAddress"
+        >
             <ul class="group-1">
-                <!--li class="btn source" v-on:click="pressRemoteButton('')">Input Select <span>Text Hold</span></li-->
-                <li class="btn source">Input Select <span>Text Hold</span>
+                <li class="btn source">Input Select
                     <ul class="sources">
-                        <li class="" v-on:click="pressRemoteButton('Hdmi1')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Hdmi2')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Hdmi3')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Hdmi4')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Component1')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Component2')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Video1')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Video2')"></li>
-                        <li class="" v-on:click="pressRemoteButton('AnalogRgb1')"></li>
-                        <li class="" v-on:click="pressRemoteButton('Analog2')"></li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi1')">HDMI 1</li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi2')">HDMI 2</li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi3')">HDMI 3</li>
+                        <li class="" v-on:click="pressRemoteButton('Hdmi4')">HDMI 4</li>
+                        <li class="" v-on:click="pressRemoteButton('Component1')">Component 1</li>
+                        <li class="" v-on:click="pressRemoteButton('Component2')">Component 2</li>
+                        <li class="" v-on:click="pressRemoteButton('Video1')">Video 1</li>
+                        <li class="" v-on:click="pressRemoteButton('Video2')">Video 2</li>
+                        <li class="" v-on:click="pressRemoteButton('AnalogRgb1')">AnalogRgb1</li>
+                        <li class="" v-on:click="pressRemoteButton('Analog2')">Analog2</li>
                     </ul>
                 </li>
                 <li class="btn voice" v-on:click="pressRemoteButton('')">&#127897;<span>Voice</span></li>
@@ -80,6 +106,7 @@
                 <li class="btn blue" v-on:click="pressRemoteButton('Blue')">Blue</li>
             </ul>
 
+<!-- Arrow & Select button -->
 <svg class="circle-buttons">
     <path id="actionCurve" fill="transparent" d="
         M60,30
@@ -115,7 +142,7 @@
     </text>
 </svg>
 
-<!--
+<!-->
             <ul class="group-6">
                 <li class="btn action" v-on:click="pressRemoteButton('ActionMenu')">Action Menu</li>
                 <li class="btn guide" v-on:click="pressRemoteButton('GGuide')">Guide</li>
@@ -132,7 +159,7 @@
                 <li class="btn left" v-on:click="pressRemoteButton('CursorLeft')">Left</li>
                 <li class="btn select" v-on:click="pressRemoteButton('DpadCenter')">Select</li>
             </ul>
--->
+<!-->
             <div class="group-8">
                 <ul class="group-9">
                     <li class="btn vol-up" v-on:click="pressRemoteButton('VolumeUp')">Vol +</li>
